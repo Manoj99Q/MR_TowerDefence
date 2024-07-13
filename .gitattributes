@@ -1,0 +1,2 @@
+<large_file_pattern> filter=lfs diff=lfs merge=lfs -text
+Assets/Meshes/Ch10_nonPBR.fbx filter=lfs diff=lfs merge=lfs -text
