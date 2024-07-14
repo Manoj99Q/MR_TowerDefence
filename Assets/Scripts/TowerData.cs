@@ -1,16 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public enum TowerType
-{
-    Basic,
-    Bomb,
-    Laser
-}
+
 public class TowerData : MonoBehaviour
 {
     public Transform BottomPoint;
-    public TowerType towerType;
     public int TowerPrice;
 
     // Update is called once per frame
