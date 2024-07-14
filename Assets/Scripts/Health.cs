@@ -8,7 +8,6 @@ public class Health : MonoBehaviour
     public float InitialHealth;
     public float currentHealth;
 
-    public static event Action<int> EnemyKilled; // int is for currency after death of the enemy
 
     private void Awake()
     {
@@ -25,7 +24,8 @@ public class Health : MonoBehaviour
 
     void DestroyEnemy()
     {
-        EnemyKilled.Invoke(GetComponent<EnemyData>().CurrencyafterDeath);
+        EnemyEvents.RaiseEnemyKilledEvent(GetComponent<EnemyData>());
+
         Destroy(gameObject);
         
     }
@@ -33,6 +33,7 @@ public class Health : MonoBehaviour
     public void TakeDamage(float damage)
     {
         currentHealth -= damage;
+        EnemyEvents.RaiseEnenmyDamagedEvent(this, damage);
         //DisplaydamageNumbers(damage);
     }
 

@@ -15,11 +15,11 @@ public class TowerBuyButton : MonoBehaviour
     {
         int towerPrice = TowerPrefab.GetComponent<TowerData>().TowerPrice;
         //check if our currency has the enough money
-        if (Currency.Contains(towerPrice))
+      /*  if (Currency.Contains(towerPrice))
         {
             SpawnTower();
             Currency.RemoveCurrency(towerPrice);
-        }
+        }*/
     }
      private void SpawnTower()
     {

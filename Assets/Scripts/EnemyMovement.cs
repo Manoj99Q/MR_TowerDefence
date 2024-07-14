@@ -72,6 +72,6 @@ public class EnemyMovement : MonoBehaviour
 
     public void ReachedEnd()
     {
-        Lives.LoseLife();
+    /*    Lives.LoseLife();*/
     }
 }
