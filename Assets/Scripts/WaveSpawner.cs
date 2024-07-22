@@ -26,8 +26,11 @@ public class WaveSpawner : MonoBehaviour
 
     }
 
-
-    IEnumerator SpawnWave()
+    public void StartWave()
+    {
+        StartCoroutine(SpawnWave());
+    }
+     IEnumerator SpawnWave()
     {
         waveNumber++;
         for (int i = 0; i < waveNumber; i++)
