@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92df4d5c790c6f84aae31e82a058b5fd, type: 3}
   m_Name: TripleShot
   m_EditorClassIdentifier: 
-  upgradeName: 
-  description: 
+  upgradeName: Triple Shot
+  description: Shoots three projectiles in spread pattern
   cost: 0
   newFireRate: 0
   newDamage: 0
   newProjectileSpeed: 0
   newExplosionRadius: 0
-  bulletsPerShot: 0
+  bulletsPerShot: 3

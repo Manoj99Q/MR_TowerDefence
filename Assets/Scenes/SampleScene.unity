@@ -17813,13 +17813,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0f87a9f77bf0054e950cc258162bdf9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TowerPrefab: {fileID: 3468576861612911609, guid: 27053dc52e171e848bddc023466aef59,
-    type: 3}
-  BombTower: {fileID: 3135696799121472394, guid: 26f82f9f606222049b0f81c68baae9c8,
-    type: 3}
-  LaserTower: {fileID: 5641262198786678541, guid: d38828adcf5102e40a988bbdfe6dd5d5,
-    type: 3}
-  rightHand: {fileID: 1065013151}
+  currTower: {fileID: 0}
+  sampleUpgrade: {fileID: 11400000, guid: 6b77d1f16aaf135419dcdce3ce06f897, type: 2}
 --- !u!4 &1305029195
 Transform:
   m_ObjectHideFlags: 0
