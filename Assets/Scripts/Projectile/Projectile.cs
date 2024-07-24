@@ -7,11 +7,12 @@ public abstract class Projectile : MonoBehaviour
     protected Transform _target;
     protected int _ProjectileDamage;
     protected float _speed;
-  
+    protected Vector3 _direction; // Add this to store the initial direction
+
     // Abstract method for updating the position of the projectile
     protected abstract void UpdatePosition();
 
-    // Abstract method for handling collision detection
+    // Method for handling collision detection
     public virtual void CollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Enemy"))
@@ -22,18 +23,21 @@ public abstract class Projectile : MonoBehaviour
         }
     }
 
-
-    public void SetTarget(Transform target,float speed, int damage)
+    public void SetTarget(Transform target, float speed, int damage)
     {
         _target = target;
         _ProjectileDamage = damage;
         _speed = speed;
-         
+    }
+
+    // Set the initial direction for the projectile
+    public void SetDirection(Vector3 direction)
+    {
+        _direction = direction.normalized;
     }
 
     // Common method for launching the projectile
-    public abstract void Launch(); // speed neeeds to be scaled before passing
-
+    public abstract void Launch(); // speed needs to be scaled before passing
 
     // Unity's Update method
     protected void Update()
@@ -57,6 +61,4 @@ public abstract class Projectile : MonoBehaviour
     {
         transform.localScale *= GameSettings.GetScaleMultiplier();
     }
-
-  
 }

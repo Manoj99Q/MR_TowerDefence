@@ -4,20 +4,12 @@ using UnityEngine;
 
 public class Bullet : Projectile
 {
-
     [SerializeField] private TrailRenderer trailRenderer;
+
     public override void Launch()
     {
-        
-        if (_target != null)
-        {
-            // Calculate the direction to the target
-            Vector3 direction = (_target.position - transform.position).normalized;
-
-
-            // Set the Rigidbody's velocity to move towards the target at the specified speed
-            GetComponent<Rigidbody>().velocity = direction * _speed;
-        }
+        // Set the Rigidbody's velocity to move in the specified direction at the specified speed
+        GetComponent<Rigidbody>().velocity = _direction * _speed;
     }
 
     protected override void UpdatePosition()

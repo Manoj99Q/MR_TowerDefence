@@ -50,7 +50,8 @@ public class TowerStateManager : MonoBehaviour
     public Transform firePoint;
     public int Damage;
     public float ProjectileSpeed;
-    public int BulletsPerShot { get; set; } = 1;
+    [SerializeField]
+    public int BulletsPerShot =1;
     protected virtual void Awake()
     {
         FloatingState = new FloatingState();
@@ -324,15 +325,34 @@ public class TowerStateManager : MonoBehaviour
         GameObject projGO = Instantiate(ProjectilePrefab, firePoint.position, firePoint.rotation);
         Projectile proj = projGO.GetComponent<Projectile>();
 
-        // Apply spread based on bulletIndex if BulletsPerShot > 1
+        // Calculate direction with or without spread
+        Vector3 direction;
         if (BulletsPerShot > 1)
         {
             float spreadAngle = 5f; // Adjust spread angle as needed
-            float angle = spreadAngle * (bulletIndex - (BulletsPerShot - 1) / 2f);
-            projGO.transform.Rotate(0, angle, 0);
+            float angleOffset = spreadAngle * (bulletIndex - (BulletsPerShot - 1) / 2f);
+
+            // Calculate direction with spread
+            direction = Quaternion.Euler(0, angleOffset, 0) * (target.position - firePoint.position).normalized;
         }
+        else
+        {
+            // Set the projectile's direction without spread
+            direction = (target.position - firePoint.position).normalized;
+        }
+
+        // Set the projectile's direction
+        proj.SetDirection(direction);
+
+        // Adjust the projectile's rotation to face the new direction
+        projGO.transform.rotation = Quaternion.LookRotation(direction);
+
+        // Adjust the local rotation of the projectile if necessary
+        projGO.transform.Rotate(90, 0, 0);
 
         proj.SetTarget(target, ProjectileSpeed * GameSettings.GetScaleMultiplier(), Damage);
         proj.Launch();
     }
+
+
 }
