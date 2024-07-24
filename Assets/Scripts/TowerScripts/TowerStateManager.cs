@@ -50,6 +50,7 @@ public class TowerStateManager : MonoBehaviour
     public Transform firePoint;
     public int Damage;
     public float ProjectileSpeed;
+    public int BulletsPerShot { get; set; } = 1;
     protected virtual void Awake()
     {
         FloatingState = new FloatingState();
@@ -306,26 +307,32 @@ public class TowerStateManager : MonoBehaviour
 
     public virtual void Fire()
     {
-        if (target != null)
+        if (target != null && fireCountdown <= 0f)
         {
-            if (fireCountdown <= 0f)
+            for (int i = 0; i < BulletsPerShot; i++)
             {
-                FireProjectile();
-                fireCountdown = 1f / fireRate;
+                FireProjectile(i);
             }
+            fireCountdown = 1f / fireRate;
         }
 
         fireCountdown -= Time.deltaTime;
     }
-    private void FireProjectile()
-    {
 
+    private void FireProjectile(int bulletIndex)
+    {
         GameObject projGO = Instantiate(ProjectilePrefab, firePoint.position, firePoint.rotation);
         Projectile proj = projGO.GetComponent<Projectile>();
-        proj.SetTarget(target,ProjectileSpeed*GameSettings.GetScaleMultiplier(),Damage);
+
+        // Apply spread based on bulletIndex if BulletsPerShot > 1
+        if (BulletsPerShot > 1)
+        {
+            float spreadAngle = 5f; // Adjust spread angle as needed
+            float angle = spreadAngle * (bulletIndex - (BulletsPerShot - 1) / 2f);
+            projGO.transform.Rotate(0, angle, 0);
+        }
+
+        proj.SetTarget(target, ProjectileSpeed * GameSettings.GetScaleMultiplier(), Damage);
         proj.Launch();
-
-
-
     }
 }

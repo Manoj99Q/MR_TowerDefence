@@ -5,10 +5,13 @@ using UnityEngine;
 
 public class TestCheck : MonoBehaviour
 {
-    public GameObject TowerPrefab;
-    public GameObject BombTower;
-    public GameObject LaserTower;
-    public OVRHand rightHand;
+    /* public GameObject TowerPrefab;
+     public GameObject BombTower;
+     public GameObject LaserTower;
+     public OVRHand rightHand;*/
+
+    public TowerStateManager currTower;
+    public TowerUpgrade sampleUpgrade;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,23 +23,28 @@ public class TestCheck : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.B))
         {
-            SpawnTower(TowerPrefab);
+            ApplyUprage();
         }
-        if (Input.GetKeyDown(KeyCode.V))
+       /* if (Input.GetKeyDown(KeyCode.V))
         {
             SpawnTower(BombTower);
         }
         if (Input.GetKeyDown(KeyCode.N))
         {
             SpawnTower(LaserTower);
-        }
+        }*/
     }
 
-    private void SpawnTower( GameObject tower)
+   /* private void SpawnTower( GameObject tower)
     {
 
         
         //spawn in center of Basedplane test
         Instantiate(tower, GameSettings.basePlane.transform).transform.position = rightHand.transform.position;
+    }*/
+
+    private void ApplyUprage()
+    {
+        sampleUpgrade.ApplyUpgrade(currTower);
     }
 }
