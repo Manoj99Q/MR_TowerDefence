@@ -29343,7 +29343,7 @@ PrefabInstance:
     - target: {fileID: 2097954357105939833, guid: ae76f9641b3930b47b63ab93ac0d7143,
         type: 3}
       propertyPath: m_Name
-      value: DistanceHandGrab (1)
+      value: DistanceHandGrab
       objectReference: {fileID: 0}
     - target: {fileID: 3224920585846018899, guid: ae76f9641b3930b47b63ab93ac0d7143,
         type: 3}
@@ -29355,6 +29355,16 @@ PrefabInstance:
       propertyPath: _oneGrabTransformer
       value: 
       objectReference: {fileID: 1964602100}
+    - target: {fileID: 3224920585846018899, guid: ae76f9641b3930b47b63ab93ac0d7143,
+        type: 3}
+      propertyPath: _twoGrabTransformer
+      value: 
+      objectReference: {fileID: 1964602104}
+    - target: {fileID: 3224920585846018899, guid: ae76f9641b3930b47b63ab93ac0d7143,
+        type: 3}
+      propertyPath: _transferOnSecondSelection
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -29363,6 +29373,14 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1964602100}
+    - targetCorrespondingSourceObject: {fileID: 2097954357105939833, guid: ae76f9641b3930b47b63ab93ac0d7143,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1964602104}
+    - targetCorrespondingSourceObject: {fileID: 2097954357105939833, guid: ae76f9641b3930b47b63ab93ac0d7143,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1964602105}
   m_SourcePrefab: {fileID: 100100000, guid: ae76f9641b3930b47b63ab93ac0d7143, type: 3}
 --- !u!1 &1964602098 stripped
 GameObject:
@@ -29408,6 +29426,50 @@ MonoBehaviour:
     MaxZ:
       Constrain: 0
       Value: 0
+--- !u!114 &1964602104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1964602098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b80644816ce922468d6e1dc8c12daff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _pivotTransform: {fileID: 0}
+  _rotationAxis: 1
+  _constraints:
+    MinAngle:
+      Constrain: 0
+      Value: 0
+    MaxAngle:
+      Constrain: 0
+      Value: 0
+--- !u!114 &1964602105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1964602098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b053556d972eae24b947c1477538bff1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _constraints:
+    ConstraintsAreRelative: 0
+    MinScale:
+      Constrain: 0
+      Value: 0
+    MaxScale:
+      Constrain: 0
+      Value: 0
+    ConstrainXScale: 0
+    ConstrainYScale: 0
+    ConstrainZScale: 0
 --- !u!1 &1973889376
 GameObject:
   m_ObjectHideFlags: 0
