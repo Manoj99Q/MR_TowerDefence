@@ -19,11 +19,8 @@ public class GazeInteractable : MonoBehaviour
         IsHovered = false;
     }
 
-    void Update()
+    protected void Update()
     {
-        if (IsHovered)
-        {
-            Debug.Log("Hovering over: " + gameObject.name);
-        }
+      
     }
 }
