@@ -162,6 +162,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b08bf035ecbe6e4786535f9ff45fa93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  towerType: 0
   LayerMaskforrayCasting:
     serializedVersion: 2
     m_Bits: 64
@@ -187,6 +188,10 @@ MonoBehaviour:
   Damage: 20
   ProjectileSpeed: 15
   BulletsPerShot: 1
+  Upgrades:
+  - {fileID: 11400000, guid: dfc732e37bbf47140b357034a1e20612, type: 2}
+  - {fileID: 11400000, guid: dea03ac4e662f384a99659d27e04f5c7, type: 2}
+  - {fileID: 11400000, guid: 6b77d1f16aaf135419dcdce3ce06f897, type: 2}
 --- !u!114 &7999497224356642917
 MonoBehaviour:
   m_ObjectHideFlags: 0

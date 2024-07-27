@@ -237,6 +237,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e016b6a4c90f264bbfa1a44788e0640, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  towerType: 2
   LayerMaskforrayCasting:
     serializedVersion: 2
     m_Bits: 64
@@ -260,6 +261,7 @@ MonoBehaviour:
   firePoint: {fileID: 3201930900860729550}
   Damage: 50
   ProjectileSpeed: -1
+  BulletsPerShot: 1
   LaserLine: {fileID: 2399137590460218712}
 --- !u!114 &2399137590460218712
 MonoBehaviour:

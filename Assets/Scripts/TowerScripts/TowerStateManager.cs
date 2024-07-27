@@ -5,7 +5,7 @@ using UnityEngine;
 
 
 public class TowerStateManager : MonoBehaviour
-{
+{   //States Setup
     public TowerBaseState FloatingState { get; protected set; }
     public TowerBaseState GrabbedState { get; protected set; }
     public TowerBaseState IdleState { get; protected set; }
@@ -18,7 +18,7 @@ public class TowerStateManager : MonoBehaviour
     [HideInInspector] public bool Isplaced { get; set; }
 
 
-
+    public TowerType towerType;
 
     [Header("Valid Poistion")]
     public LayerMask LayerMaskforrayCasting;
@@ -50,8 +50,13 @@ public class TowerStateManager : MonoBehaviour
     public Transform firePoint;
     public int Damage;
     public float ProjectileSpeed;
-    [SerializeField]
     public int BulletsPerShot =1;
+
+    [Header("Upgrades")]
+    [SerializeField]
+    List<TowerUpgrade> Upgrades = new();
+    private HashSet<TowerUpgrade> AppliedUpgrades = new();
+
     protected virtual void Awake()
     {
         FloatingState = new FloatingState();
@@ -354,5 +359,21 @@ public class TowerStateManager : MonoBehaviour
         proj.Launch();
     }
 
+    public void OpenUpgradeMenu()
+    {
+        Events.RaiseUpgradeMenuEvent(this, UpgradeMenuEventType.Open);
+    }
+
+
+
+    public void AddtoApplied(TowerUpgrade upgrade)
+    {
+        AppliedUpgrades.Add(upgrade);
+    }
+
+    public bool IsApplied(TowerUpgrade upgrade)
+    {
+        return AppliedUpgrades.Contains(upgrade);
+    }
 
 }

@@ -272,6 +272,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b08bf035ecbe6e4786535f9ff45fa93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  towerType: 1
   LayerMaskforrayCasting:
     serializedVersion: 2
     m_Bits: 64
@@ -296,6 +297,7 @@ MonoBehaviour:
   firePoint: {fileID: 3512358511383412394}
   Damage: 50
   ProjectileSpeed: 40
+  BulletsPerShot: 1
 --- !u!1 &3493912686485197208
 GameObject:
   m_ObjectHideFlags: 0
