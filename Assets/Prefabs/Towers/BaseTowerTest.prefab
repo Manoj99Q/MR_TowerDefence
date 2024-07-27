@@ -74,6 +74,7 @@ GameObject:
   - component: {fileID: 5483287470374730494}
   - component: {fileID: 3035425597847654858}
   - component: {fileID: 4440984793360338851}
+  - component: {fileID: 49227821534975036}
   m_Layer: 7
   m_Name: BaseTowerTest
   m_TagString: Untagged
@@ -185,6 +186,22 @@ MonoBehaviour:
   firePoint: {fileID: 6616526402611487579}
   Damage: 20
   ProjectileSpeed: 15
+  BulletsPerShot: 1
+--- !u!114 &49227821534975036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3468576861612911609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac757cc1fb2a9e54bbe44212081e7239, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnObjectHover:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &4232208669052383611
 GameObject:
   m_ObjectHideFlags: 0
