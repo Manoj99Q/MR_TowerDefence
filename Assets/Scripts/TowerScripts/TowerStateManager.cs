@@ -54,8 +54,8 @@ public class TowerStateManager : MonoBehaviour
 
     [Header("Upgrades")]
     [SerializeField]
-    List<TowerUpgrade> Upgrades = new();
-    private HashSet<TowerUpgrade> AppliedUpgrades = new();
+    public List<TowerUpgrade> Upgrades = new();
+    private HashSet<string> AppliedUpgrades = new();
 
     protected virtual void Awake()
     {
@@ -368,12 +368,12 @@ public class TowerStateManager : MonoBehaviour
 
     public void AddtoApplied(TowerUpgrade upgrade)
     {
-        AppliedUpgrades.Add(upgrade);
+        AppliedUpgrades.Add(upgrade.name);
     }
 
     public bool IsApplied(TowerUpgrade upgrade)
     {
-        return AppliedUpgrades.Contains(upgrade);
+        return AppliedUpgrades.Contains(upgrade.name);
     }
 
 }
