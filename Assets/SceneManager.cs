@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class SceneManager : MonoBehaviour
 {
-    [SerializeField] private GameObject UpgradeMenu;
-    private GameObject currentMenu;
+    [SerializeField] private UpgradeMenuManager UpgradeMenu;
+    private UpgradeMenuManager currentMenu;
+    private TowerStateManager currentlyfocused;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,8 +20,19 @@ public class SceneManager : MonoBehaviour
 
             if (currentMenu != null)
             {
-                Destroy(currentMenu);
+                if (currentlyfocused==towerState)
+                {
+                    return;
+                }
+                else
+                {
+                    Destroy(currentMenu.gameObject);
+                }
             }
+
+            currentlyfocused = towerState;
+            currentMenu = Instantiate(UpgradeMenu);
+            currentMenu.Initialize(towerState);
 
 
         }

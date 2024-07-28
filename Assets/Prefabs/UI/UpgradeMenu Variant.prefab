@@ -122,10 +122,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 952546190160867952}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 7809446891126619544}
+        m_TargetAssemblyTypeName: UpgradeMenuManager, Assembly-CSharp
+        m_MethodName: CloseMenu
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -146,7 +146,7 @@ GameObject:
   - component: {fileID: 6911633401420116295}
   - component: {fileID: 5246265349821370346}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Close
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -921,6 +921,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5580060593926156301, guid: 6b115c42b6a9710488610a109e47ff0a,
+        type: 3}
+      propertyPath: m_text
+      value: UpgradeMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 5580060593926156301, guid: 6b115c42b6a9710488610a109e47ff0a,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 16.66
+      objectReference: {fileID: 0}
+    - target: {fileID: 5580060593926156301, guid: 6b115c42b6a9710488610a109e47ff0a,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 16.66
       objectReference: {fileID: 0}
     - target: {fileID: 5647202409132933174, guid: 6b115c42b6a9710488610a109e47ff0a,
         type: 3}

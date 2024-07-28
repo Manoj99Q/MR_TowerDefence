@@ -12300,7 +12300,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 133310a08df6de842ba73421edc2cb0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UpgradeMenu: {fileID: 0}
+  UpgradeMenu: {fileID: 7809446891126619544, guid: f4ec2d4f37796d64995b9424464a6c54,
+    type: 3}
 --- !u!4 &899687584
 Transform:
   m_ObjectHideFlags: 0

@@ -11,21 +11,15 @@ public class UpgradeMenuManager : MonoBehaviour
     private TowerStateManager currentfocusedTower;
     private void Awake()
     {
-        Events.UpgradeMenuEvent += UpgradeMenuEventHandler;
-        gameObject.SetActive(false);
+       
     }
-
-    private void UpgradeMenuEventHandler(TowerStateManager towerStateManager, UpgradeMenuEventType type)
+    public void Initialize(TowerStateManager towerStateManager)
     {
-        if (type == UpgradeMenuEventType.Open)
-        {
-            currentfocusedTower = towerStateManager;
-            this.gameObject.SetActive(true);       
-            DisplayUpgradeOptions();
-
-
-        }
+        currentfocusedTower = towerStateManager;
+        SetPosition();
+        DisplayUpgradeOptions();
     }
+
 
     private void DisplayUpgradeOptions()
     {
@@ -63,7 +57,8 @@ public class UpgradeMenuManager : MonoBehaviour
         }
     }
 
-    private void OnEnable()
+
+    private void SetPosition()
     {
 
         Vector3 spawnPosition = new Vector3(currentfocusedTower.transform.position.x, Camera.main.transform.position.y, currentfocusedTower.transform.position.z); ;
@@ -77,8 +72,8 @@ public class UpgradeMenuManager : MonoBehaviour
         // Rotate the object to look at the camera while preserving its Z-axis rotation
         transform.rotation = Quaternion.LookRotation(cameraForwardNoY, Vector3.up);
     }
-    private void OnDisable()
+   public void CloseMenu()
     {
-        DeleteAllChildren(Content);
+        Destroy(this.gameObject);
     }
 }

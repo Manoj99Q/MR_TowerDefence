@@ -213,7 +213,7 @@ MonoBehaviour:
   OnGazeExit:
     m_PersistentCalls:
       m_Calls: []
-  gazeTriggerDuration: 2
+  gazeTriggerDuration: 1
   OnGazeTrigger:
     m_PersistentCalls:
       m_Calls:
