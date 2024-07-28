@@ -33,9 +33,9 @@ public class TowerStateManager : MonoBehaviour
 
 
 
-    
+
     //transform of the enemy gameobject
-   
+
     protected Transform target;
     [Header("Rotation and Range")]
     public float Range;
@@ -50,7 +50,7 @@ public class TowerStateManager : MonoBehaviour
     public Transform firePoint;
     public int Damage;
     public float ProjectileSpeed;
-    public int BulletsPerShot =1;
+    public int BulletsPerShot = 1;
 
     [Header("Upgrades")]
     [SerializeField]
@@ -73,7 +73,7 @@ public class TowerStateManager : MonoBehaviour
         //transform.parent = GameSettings.BasePlane.transform;
         CurrentState.EnterState(this);
 
-        
+
 
     }
 
@@ -168,21 +168,21 @@ public class TowerStateManager : MonoBehaviour
 
 
 
-    
+
 
     public void OnRelease()
     {
 
         if (potentialTower != null)
         { // Placed case
-            
+
             //considering offset
             transform.position = potentialTower.transform.position;
             transform.rotation = Quaternion.identity;
 
-            
+
             Isplaced = true;
-            
+
         }
 
         Destroy(potentialTower);
@@ -190,9 +190,9 @@ public class TowerStateManager : MonoBehaviour
         {
             Destroy(invalidTower);
 
-         
+
             Isplaced = false;
-            
+
         }
     }
 
@@ -361,7 +361,11 @@ public class TowerStateManager : MonoBehaviour
 
     public void OpenUpgradeMenu()
     {
-        Events.RaiseUpgradeMenuEvent(this, UpgradeMenuEventType.Open);
+        if (CurrentState is IdleState || CurrentState is SeekAndAttackState)
+        {
+            Events.RaiseUpgradeMenuEvent(this, UpgradeMenuEventType.Open);
+        }
+       
     }
 
 
