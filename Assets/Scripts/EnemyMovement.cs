@@ -20,9 +20,6 @@ public class EnemyMovement : MonoBehaviour
 
     private void Awake()
     {
-        //Scaling Adjustment
-        movementSpeed *= GameSettings.GetScaleMultiplier();
-        transform.localScale  *= GameSettings.GetScaleMultiplier();
         Target = WayPoints.waypoints[0];
     }
 
@@ -31,7 +28,7 @@ public class EnemyMovement : MonoBehaviour
         //considering the vertial offset
         Vector3 AdjustedTraget = Target.position + GetComponent<EnemyData>().GetOffset();
         Vector3 dir = AdjustedTraget - transform.position;
-        transform.Translate(movementSpeed * Time.deltaTime * dir.normalized,Space.World);
+        transform.Translate(movementSpeed* GameSettings.GetScaleMultiplier() * Time.deltaTime * dir.normalized,Space.World);
     
 
         if (Vector3.Distance(transform.position, AdjustedTraget) < (0.2f* GameSettings.GetScaleMultiplier()))

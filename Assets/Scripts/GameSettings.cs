@@ -27,7 +27,7 @@ public class GameSettings : MonoBehaviour
     public GameObject _inValidLaserTower;
 
 
-    public static GameObject basePlane;
+
 
 
 
@@ -47,7 +47,7 @@ public class GameSettings : MonoBehaviour
         ValidLaserTower = _validLaserTower;
         InValidLaserTower = _inValidLaserTower;
 
-        basePlane = _baseplane;
+       
 
     }
     // Update is called once per frame

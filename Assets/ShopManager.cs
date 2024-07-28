@@ -88,6 +88,6 @@
     private void SpawnTower(GameObject tower)
         {
         //spawn in fron of the shop
-        Instantiate(tower, GameSettings.basePlane.transform).transform.position = transform.position - (0.1f * transform.forward );
+        Instantiate(tower, GameSettings.BasePlane.transform).transform.position = transform.position - (0.1f * transform.forward );
         }
     }

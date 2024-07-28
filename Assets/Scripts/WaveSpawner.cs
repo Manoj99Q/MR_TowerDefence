@@ -43,7 +43,7 @@ public class WaveSpawner : MonoBehaviour
     }
     void SpawnEnemy( int enemypos)
     {
-        GameObject spawnedenemy = Instantiate(enemyPrefab, WayPoints.StartPoint.position, WayPoints.StartPoint.rotation) ;
+        GameObject spawnedenemy = Instantiate(enemyPrefab, WayPoints.StartPoint.position, WayPoints.StartPoint.rotation,GameSettings.BasePlane.transform) ;
         //vertical offset
         spawnedenemy.transform.Translate(spawnedenemy.GetComponent<EnemyData>().GetOffset(),Space.World);
 ;        spawnedenemy.GetComponent<EnemyData>().WaveNumber = waveNumber;
