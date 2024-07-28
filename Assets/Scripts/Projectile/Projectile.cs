@@ -8,6 +8,8 @@ public abstract class Projectile : MonoBehaviour
     protected int _ProjectileDamage;
     protected float _speed;
     protected Vector3 _direction; // Add this to store the initial direction
+    [SerializeField] protected float LifeTime = 5f;
+ 
 
     // Abstract method for updating the position of the projectile
     protected abstract void UpdatePosition();
@@ -43,8 +45,8 @@ public abstract class Projectile : MonoBehaviour
     protected void Update()
     {
         UpdatePosition();
-        //if enemy dies before
-        if (_target == null)
+        LifeTime -= Time.deltaTime;
+        if (LifeTime <=0f)
         {
             Destroy(gameObject);
             return;
@@ -60,5 +62,6 @@ public abstract class Projectile : MonoBehaviour
     protected void Awake()
     {
         transform.localScale *= GameSettings.GetScaleMultiplier();
+
     }
 }
