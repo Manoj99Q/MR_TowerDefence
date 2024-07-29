@@ -5,8 +5,10 @@ using UnityEngine;
 public class Laser : MonoBehaviour
 {
 
-    public LineRenderer linerenderer;
-    //enemy gameobject transform
+    private LineRenderer linerenderer;
+    private Transform _target;
+    private Transform _FirePoint;
+    private float _damagePerSecond;
 
 
 
@@ -15,25 +17,38 @@ public class Laser : MonoBehaviour
  
     private void Awake()
     {
+        linerenderer = GetComponent<LineRenderer>();
         orglinemultiplier = linerenderer.widthMultiplier;
+        
     }
     void Update()
     {
    
 
-        
+        if(_target != null)
+        {
+            FireLaser();
+        }
+        else
+        {
+           DisableLaser();
+        }
     }
 
-
-    public void FireLaser(Transform _target,Transform Firepoint, int damagepersecond)
+    public void Initialize(Transform target,float damagePersecond,Transform FirePoint)
+    {
+        _target = target;
+        _FirePoint = FirePoint;
+        _damagePerSecond = damagePersecond;
+    }
+    public void FireLaser()
     {
         linerenderer.widthMultiplier = orglinemultiplier * GameSettings.GetScaleMultiplier();
-        linerenderer.enabled = true;
-        linerenderer.SetPosition(0, Firepoint.position);
+        linerenderer.SetPosition(0, _FirePoint.position);
         linerenderer.SetPosition(1, _target.position);
          
 
-        _target.GetComponent<Health>().TakeDamage(damagepersecond*Time.deltaTime);
+        _target.GetComponent<Health>().TakeDamage(_damagePerSecond*Time.deltaTime);
 
         
 
@@ -41,7 +56,7 @@ public class Laser : MonoBehaviour
 
     public void DisableLaser()
     {
-        linerenderer.enabled = false;
+        Destroy(this.gameObject);
     }
 
 

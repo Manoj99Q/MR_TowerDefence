@@ -2,30 +2,47 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LaserTowerStateManager : TowerStateManager
+public class LaserTowerStateManager : DOTTowerStateManager
 {
-    [Tooltip("Laser Only")]
-    public Laser LaserLine;
-    public override void Fire()
+    [Header("LaserTower")]
+    [Tooltip("Laser prefab")]
+    [SerializeField] private Laser laser;
+    [SerializeField] private float DamagePerSecond;
+
+    private Laser currlaseer;
+
+    public override void StartDealDamageOverTime()
     {
-        if(target != null)
+        Debug.Log("Laser Tower Start Deal Damage Over Time");
+       
+    }
+
+    public override void StopDealDamageOverTime()
+    {
+        Debug.Log("Laser Tower Stop Deal Damage Over Time");
+        if(currlaseer != null)
         {
-            FireLaser();
+            Destroy(currlaseer.gameObject);
+            currlaseer = null;
         }
-                                                         
+        
     }
 
-
-
-    protected void FireLaser()
+    public override void UpdateDealDamageOverTime()
     {
-        LaserLine.FireLaser(target, firePoint, Damage);
+        Debug.Log("Laser Tower Update Deal Damage Over Time");
+        GetTarget();
+        if (currlaseer == null)
+        {
+            currlaseer = Instantiate(laser, firePoint.position, Quaternion.identity);
+            currlaseer.enabled = true;
+            currlaseer.Initialize(target, DamagePerSecond, firePoint);
+        }
+        else
+        {
+           
+            currlaseer.Initialize(target, DamagePerSecond, firePoint);
+        }
+
     }
-
-    protected void DisableLaser()
-    {
-        LaserLine.DisableLaser();
-    }
-
-
 }
