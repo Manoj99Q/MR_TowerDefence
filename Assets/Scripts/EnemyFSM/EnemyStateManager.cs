@@ -3,27 +3,34 @@ using UnityEngine;
 public enum EnemyState
 {
     Idle,
-    Walking
+    Pushed,
+    Walking,
+    Rotating
 }
 public class EnemyStateManager : StateManager<EnemyState>
 {
 
     public List<Transform> WayPoints;
     [HideInInspector] public Transform Endpoint;
-    private Rigidbody Rigidbody;
+    [HideInInspector] public Rigidbody rigidbody;
     public Transform TargetWaypoint;
     private int CurrentWaypointIndex = 0;
     [SerializeField] private float Speed; // Movement speed
 
+    private CapsuleCollider _capsuleCollider; // Reference to the enemy's capsule collider
+    public LayerMask groundedLayer;
+    public Animator anim;
 
     protected void Awake()
     {
 
-        Rigidbody = GetComponent<Rigidbody>();
-       
+        rigidbody = GetComponent<Rigidbody>();
+        _capsuleCollider = GetComponent<CapsuleCollider>(); // Get the capsule collider component
 
         States.Add(EnemyState.Idle, new EnemyIdleState(this));
         States.Add(EnemyState.Walking, new EnemyWalkingState(this));
+        States.Add(EnemyState.Rotating, new EnemyRotatingState(this));
+        States.Add(EnemyState.Pushed, new EnemyPushedState(this));
 
         CurrentState = States[EnemyState.Idle]; // Start in the Idle state
 
@@ -35,7 +42,7 @@ public class EnemyStateManager : StateManager<EnemyState>
     public void MoveToNextWaypoint()
     {
 
-        if (Rigidbody == null || WayPoints == null || WayPoints.Count == 0)
+        if (rigidbody == null || WayPoints == null || WayPoints.Count == 0)
         {
             Debug.Log("Invalid setup.");
             return;
@@ -53,13 +60,13 @@ public class EnemyStateManager : StateManager<EnemyState>
                 return;
             }
 
-            direction = (Endpoint.position - Rigidbody.position);
+            direction = (Endpoint.position - rigidbody.position);
             direction.y = 0; // Ignore the Y component
 
-            distance = Vector3.Distance(new Vector3(Rigidbody.position.x, 0, Rigidbody.position.z), new Vector3(Endpoint.position.x, 0, Endpoint.position.z));
+            distance = Vector3.Distance(new Vector3(rigidbody.position.x, 0, rigidbody.position.z), new Vector3(Endpoint.position.x, 0, Endpoint.position.z));
 
             // Destroy the enemy when it reaches the Endpoint
-            if (distance < 0.1f)
+            if (distance < (0.1f * GameSettings.GetScaleMultiplier()))
             {
                 Debug.Log("Reached Endpoint. Destroying enemy.");
                 Destroy(gameObject);
@@ -69,13 +76,13 @@ public class EnemyStateManager : StateManager<EnemyState>
         else
         {
             // Move towards the current waypoint
-            direction = (TargetWaypoint.position - Rigidbody.position);
+            direction = (TargetWaypoint.position - rigidbody.position);
             direction.y = 0; // Ignore the Y component
 
-            distance = Vector3.Distance(new Vector3(Rigidbody.position.x, 0, Rigidbody.position.z), new Vector3(TargetWaypoint.position.x, 0, TargetWaypoint.position.z));
+            distance = Vector3.Distance(new Vector3(rigidbody.position.x, 0, rigidbody.position.z), new Vector3(TargetWaypoint.position.x, 0, TargetWaypoint.position.z));
 
             // Update to the next waypoint if close enough
-            if (distance < 0.1f)
+            if (distance < (0.1f * GameSettings.GetScaleMultiplier()))
             {
                 Debug.Log("Within Range of Waypoint. Moving to next waypoint.");
 
@@ -88,18 +95,64 @@ public class EnemyStateManager : StateManager<EnemyState>
                 {
                     // All waypoints visited, start heading towards Endpoint
                     TargetWaypoint = Endpoint;
+                    Debug.Log("All waypoints visited. Heading towards Endpoint.");
                 }
+
+                // Transition to rotating state
+                TransitionToState(EnemyState.Rotating);
             }
         }
 
-        // Normalize the direction vector
-        direction.Normalize();
+        // Calculate desired velocity
+        Vector3 desiredVelocity = direction.normalized * Speed;
 
-        // Apply force for movement
-        Rigidbody.AddForce(direction * Speed, ForceMode.Force);
+        // Apply force to change the velocity
+        rigidbody.AddForce(desiredVelocity, ForceMode.VelocityChange);
 
+        Vector3 flatvel = new Vector3(rigidbody.velocity.x, 0, rigidbody.velocity.z);
+        
+        if(flatvel.magnitude > Speed * GameSettings.GetScaleMultiplier())
+        {
+            rigidbody.velocity = flatvel.normalized * Speed * GameSettings.GetScaleMultiplier();
+        }
 
-        Debug.Log($"Direction: {direction}, Distance: {distance}");
     }
 
+    public bool GroundCheck()
+    {
+        if (_capsuleCollider == null)
+        {
+            Debug.LogError("CapsuleCollider is missing on the enemy.");
+            return false;
+        }
+
+        // Convert the local center of the capsule collider to world space
+        Vector3 center = transform.TransformPoint(_capsuleCollider.center);
+        float height = _capsuleCollider.bounds.extents.y;
+
+        // Define an offset for better ground detection
+        float offset = 0.1f * GameSettings.GetScaleMultiplier();
+
+        // Perform a raycast from the center of the collider downwards
+        RaycastHit hit;
+        bool isGrounded = Physics.Raycast(center, Vector3.down, out hit, height + offset, groundedLayer);
+
+        // Debug draw rays for visualization
+        Debug.DrawRay(center, Vector3.down * (height + offset), Color.red);
+
+
+        return isGrounded;
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        // Call the OnColliderEnter method in the current state
+        if (CurrentState is EnemyBaseState enemyBaseState)
+        {
+            enemyBaseState.OnColliderEnter(collision);
+        }
+    }
+
+
 }
+

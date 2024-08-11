@@ -14,4 +14,15 @@ public abstract class EnemyBaseState : BaseState<EnemyState>
         enemyStateManager = _enemyStateManager;
     }
 
+    public abstract void OnColliderEnter(Collision collision);
+    public override void EnterState()
+    {
+       enemyStateManager.anim.SetBool(StateKey.ToString(), true);
+    }
+
+    public override void ExitState()
+    {
+        enemyStateManager.anim.SetBool(StateKey.ToString(), false);
+    }
+
 }

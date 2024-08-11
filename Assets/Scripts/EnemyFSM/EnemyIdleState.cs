@@ -6,6 +6,7 @@ public class EnemyIdleState : EnemyBaseState
 
     public override void EnterState()
     {
+        base.EnterState();
         Debug.Log("Entered Idle State");
 
         // Immediately transition to walking state  
@@ -14,7 +15,13 @@ public class EnemyIdleState : EnemyBaseState
 
     public override void ExitState()
     {
+        base.ExitState();
         Debug.Log("Exiting Idle State");
+    }
+
+    public override void OnColliderEnter(Collision collision)
+    {
+        return;
     }
 
     public override void UpdateState() { }
