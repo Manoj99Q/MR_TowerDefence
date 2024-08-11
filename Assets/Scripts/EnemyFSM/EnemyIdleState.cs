@@ -1,15 +1,15 @@
 using UnityEngine;
 
-public class EnemyIdleState : BaseState<EnemyState>
+public class EnemyIdleState : EnemyBaseState
 {
-    public EnemyIdleState() : base(EnemyState.Idle) { }
+    public EnemyIdleState(EnemyStateManager esm) : base(EnemyState.Idle,esm) { }
 
     public override void EnterState()
     {
         Debug.Log("Entered Idle State");
 
-        // Immediately transition to walking state
-        EnemyStateManager.Instance.TransitionToState(EnemyState.Walking);
+        // Immediately transition to walking state  
+        stateManager.TransitionToState(EnemyState.Walking);
     }
 
     public override void ExitState()
@@ -19,10 +19,7 @@ public class EnemyIdleState : BaseState<EnemyState>
 
     public override void UpdateState() { }
 
-    public override EnemyState GetNextState()
-    {
-        return EnemyState.Idle; // Stays in idle until manually transitioned
-    }
+
 
     public override void OnTriggerEnter(Collider other) { }
     public override void OnTriggerStay(Collider other) { }

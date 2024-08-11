@@ -8,14 +8,14 @@ public class EnemyStateManager : StateManager<EnemyState>
 {
 
 
-    public static EnemyStateManager Instance;
+ 
 
     protected  void Awake()
     {
-        Instance = this;
+    
 
-        States.Add(EnemyState.Idle, new EnemyIdleState());
-        States.Add(EnemyState.Walking, new EnemyWalkingState());
+        States.Add(EnemyState.Idle, new EnemyIdleState(this));
+        States.Add(EnemyState.Walking, new EnemyWalkingState(this));
 
         CurrentState = States[EnemyState.Idle]; // Start in the Idle state
     }
