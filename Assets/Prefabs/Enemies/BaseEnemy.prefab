@@ -139,12 +139,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4749226439655022785}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 02994afb5f8c8064bb1fafc6005dc678, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InitialHealth: 200
+  InitialHealth: 600
   currentHealth: 0
 --- !u!54 &4792422060206650504
 Rigidbody:
