@@ -17,12 +17,14 @@ public abstract class Projectile : MonoBehaviour
     // Method for handling collision detection
     public virtual void CollisionEnter(Collision collision)
     {
+        Debug.Log(collision.gameObject.name);
         if (collision.gameObject.CompareTag("Enemy"))
         {
             collision.gameObject.GetComponent<Health>().TakeDamage(_ProjectileDamage);
             Destroy(gameObject);
             return;
         }
+
     }
 
     public void SetTarget(Transform target, float speed, int damage)

@@ -43,9 +43,15 @@
                 gameObject.SetActive(true);
             }
         }
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.S)){
+            ToggleShop();
+        }
+    }
 
 
-        public void BuyTower(TowerType towertype)
+    public void BuyTower(TowerType towertype)
         {
 
         GameObject towerToSpawn = null;

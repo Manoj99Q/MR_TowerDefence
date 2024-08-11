@@ -45,9 +45,12 @@ public class Health : MonoBehaviour
         DynamicTextManager.CreateText(transform.position + offset, num.ToString(), DynamicTextManager.defaultData);
     }
 
-
-   /* private void OnDestroy()
+    private void OnCollisionEnter(Collision collision)
     {
-        Currency.AddCurrency(GetComponent<EnemyData>().CurrencyafterDeath);
-    }*/
+        Debug.Log(collision.gameObject.name);
+    }
+    /* private void OnDestroy()
+     {
+         Currency.AddCurrency(GetComponent<EnemyData>().CurrencyafterDeath);
+     }*/
 }

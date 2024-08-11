@@ -14,8 +14,7 @@ public class Bullet : Projectile
 
     protected override void UpdatePosition()
     {
-        //nothing
-        return;
+        
     }
 
     private void Awake()

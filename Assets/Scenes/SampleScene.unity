@@ -28759,6 +28759,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PalmMenu
       objectReference: {fileID: 0}
+    - target: {fileID: 3769177771078722725, guid: df33bb8d4b9e86243a8750b6bb49eb72,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3769177771078722728, guid: df33bb8d4b9e86243a8750b6bb49eb72,
         type: 3}
       propertyPath: _hand
