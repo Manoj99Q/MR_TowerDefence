@@ -9,7 +9,7 @@ public class EnemyIdleState : EnemyBaseState
         Debug.Log("Entered Idle State");
 
         // Immediately transition to walking state  
-        stateManager.TransitionToState(EnemyState.Walking);
+        enemyStateManager.TransitionToState(EnemyState.Walking);
     }
 
     public override void ExitState()
@@ -21,7 +21,5 @@ public class EnemyIdleState : EnemyBaseState
 
 
 
-    public override void OnTriggerEnter(Collider other) { }
-    public override void OnTriggerStay(Collider other) { }
-    public override void OnTriggerExit(Collider other) { }
+
 }

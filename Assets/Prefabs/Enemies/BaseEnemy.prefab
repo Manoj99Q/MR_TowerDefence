@@ -46,6 +46,7 @@ GameObject:
   - component: {fileID: 726770061701295760}
   - component: {fileID: 145659396843789218}
   - component: {fileID: 4792422060206650504}
+  - component: {fileID: 4513629617286186861}
   m_Layer: 9
   m_Name: BaseEnemy
   m_TagString: Enemy
@@ -108,7 +109,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4749226439655022785}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 05c9168acfd1c2649973488850567c35, type: 3}
   m_Name: 
@@ -138,7 +139,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4749226439655022785}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 02994afb5f8c8064bb1fafc6005dc678, type: 3}
   m_Name: 
@@ -154,7 +155,7 @@ Rigidbody:
   m_GameObject: {fileID: 4749226439655022785}
   serializedVersion: 4
   m_Mass: 1
-  m_Drag: 0
+  m_Drag: 0.8
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -172,6 +173,21 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &4513629617286186861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4749226439655022785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d7e10a192b8fab44809f53a25eac5b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WayPoints: []
+  TargetWaypoint: {fileID: 0}
+  Speed: 2
 --- !u!1001 &3842841623080330386
 PrefabInstance:
   m_ObjectHideFlags: 0

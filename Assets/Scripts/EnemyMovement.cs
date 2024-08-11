@@ -20,7 +20,7 @@ public class EnemyMovement : MonoBehaviour
 
     private void Awake()
     {
-        Target = WayPoints.waypoints[0];
+
     }
 
     private void Update()
@@ -38,11 +38,11 @@ public class EnemyMovement : MonoBehaviour
 
         }
         //Enemy Reached EndPoint
-        if(Vector3.Distance(transform.position, WayPoints.EndPoint.position+ GetComponent<EnemyData>().GetOffset()) < (0.2f*GameSettings.GetScaleMultiplier()))
+       /* if(Vector3.Distance(transform.position, WayPoints.EndPoint.position+ GetComponent<EnemyData>().GetOffset()) < (0.2f*GameSettings.GetScaleMultiplier()))
         {
             ReachedEnd();
             Destroy(gameObject);
-        }
+        }*/
     }
 
     public void GetNextWayPoint()
@@ -50,7 +50,7 @@ public class EnemyMovement : MonoBehaviour
       
         wayPointIndex++;
 
-        if (wayPointIndex == WayPoints.waypoints.Count)
+       /* if (wayPointIndex == WayPoints.waypoints.Count)
         {
             Target = WayPoints.EndPoint;
             //transform.LookAt(Target.position);
@@ -62,7 +62,7 @@ public class EnemyMovement : MonoBehaviour
             Target = WayPoints.waypoints[wayPointIndex];
             // transform.LookAt(Target.position);
             transform.DOLookAt(Target.position, Timetorotate);
-        }
+        }*/
        
     }
 

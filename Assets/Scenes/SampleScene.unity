@@ -9303,9 +9303,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 974a88c583cc5d74e8058beabd8e2f78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 4749226439655022785, guid: 0bf7d4bdc3584ed40891795755881854,
-    type: 3}
   timebetweenWaves: 3
+  enemyStateManagerPrefab: {fileID: 4513629617286186861, guid: 0bf7d4bdc3584ed40891795755881854,
+    type: 3}
+  wayPoints: {fileID: 956631618}
 --- !u!4 &695648199
 Transform:
   m_ObjectHideFlags: 0
@@ -13091,8 +13092,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d80a73c9d0b23d640b60e3ca0d683072, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _StartPoint: {fileID: 1289863975}
-  _EndPoint: {fileID: 161237047}
+  waypointsList: []
+  StartPoint: {fileID: 1289863975}
+  EndPoint: {fileID: 161237047}
 --- !u!1 &959130520
 GameObject:
   m_ObjectHideFlags: 0
