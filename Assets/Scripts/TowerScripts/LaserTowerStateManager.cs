@@ -7,7 +7,7 @@ public class LaserTowerStateManager : DOTTowerStateManager
     [Header("LaserTower")]
     [Tooltip("Laser prefab")]
     [SerializeField] private Laser laser;
-    [SerializeField] private float DamagePerSecond;
+    public float DamagePerSecond;
 
     private Laser currlaseer;
 
@@ -27,22 +27,33 @@ public class LaserTowerStateManager : DOTTowerStateManager
         }
         
     }
-
+    //gets called only if the enemey is in range 
     public override void UpdateDealDamageOverTime()
     {
         Debug.Log("Laser Tower Update Deal Damage Over Time");
         GetTarget();
+
+        if (target == null)
+        {
+            Debug.Log("No target found.");
+            return;
+        }
+        Debug.Log("Target found.");
         if (currlaseer == null)
         {
+            // Instantiate a new laser object
             currlaseer = Instantiate(laser, firePoint.position, Quaternion.identity);
-            currlaseer.enabled = true;
-            currlaseer.Initialize(target, DamagePerSecond, firePoint);
-        }
-        else
-        {
-           
-            currlaseer.Initialize(target, DamagePerSecond, firePoint);
         }
 
+        // Update the laser
+        currlaseer.FireLaser(firePoint.position, target.position, DamagePerSecond);
+
+    }
+
+    public void UpgradeLaser(Laser _laser)
+    {
+        this.laser = _laser;
+        currlaseer.DisableLaser();
+        currlaseer = null;
     }
 }

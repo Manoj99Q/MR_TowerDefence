@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 5866522639987060119}
   - component: {fileID: 3644304149996051915}
   - component: {fileID: 5919769634068424036}
+  - component: {fileID: -7099269112813006200}
   m_Layer: 7
   m_Name: LaserTower
   m_TagString: Untagged
@@ -156,9 +157,47 @@ MonoBehaviour:
   Damage: -1
   ProjectileSpeed: -1
   BulletsPerShot: 1
-  Upgrades: []
+  Upgrades:
+  - {fileID: 11400000, guid: ec998746d8a8fd54086c07bb6f7f9e8c, type: 2}
   laser: {fileID: 5215513872533245921, guid: 22b3323c1d9d76e4c8e82e12f2b614e2, type: 3}
   DamagePerSecond: 20
+--- !u!114 &-7099269112813006200
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5641262198786678541}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9313b7a068d0c84b93dff6f8f819fca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnGazeEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  OnGazeStay:
+    m_PersistentCalls:
+      m_Calls: []
+  OnGazeExit:
+    m_PersistentCalls:
+      m_Calls: []
+  gazeTriggerDuration: 1
+  OnGazeTrigger:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5919769634068424036}
+        m_TargetAssemblyTypeName: TowerStateManager, Assembly-CSharp
+        m_MethodName: OpenUpgradeMenu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6712405822221134609
 GameObject:
   m_ObjectHideFlags: 0

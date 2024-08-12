@@ -11,7 +11,8 @@ public class TowerUpgrade : ScriptableObject
     public float newProjectileSpeed;
     public float newExplosionRadius;
     public int bulletsPerShot; // For spread shot
-
+    public Laser newLaser; // For laser tower
+    public float damagePerSecond; // For DOT tower
     // Method to apply the upgrade to a tower
     public void ApplyUpgrade(TowerStateManager tower)
     {
@@ -43,6 +44,24 @@ public class TowerUpgrade : ScriptableObject
         if (bulletsPerShot > 0)
         {
             tower.BulletsPerShot = bulletsPerShot;
+        }
+
+        if(newLaser != null)
+        {
+            LaserTowerStateManager laserTower = tower as LaserTowerStateManager;
+            if (laserTower != null)
+            {
+               laserTower.UpgradeLaser(newLaser);
+            }
+        }
+
+        if(damagePerSecond > 0)
+        {
+            LaserTowerStateManager dotTower = tower as LaserTowerStateManager;
+            if (dotTower != null)
+            {
+                dotTower.DamagePerSecond = damagePerSecond;
+            }
         }
     }
 }

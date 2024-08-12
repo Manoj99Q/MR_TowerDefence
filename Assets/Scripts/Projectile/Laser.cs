@@ -1,64 +1,51 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Laser : MonoBehaviour
 {
+    protected LineRenderer linerenderer;
+    protected float orglinemultiplier;
+    public LayerMask enemyLayer; // Layer mask to specify which layers the raycast should hit
 
-    private LineRenderer linerenderer;
-    private Transform _target;
-    private Transform _FirePoint;
-    private float _damagePerSecond;
-
-
-
-    private float orglinemultiplier;
-
- 
     private void Awake()
     {
         linerenderer = GetComponent<LineRenderer>();
         orglinemultiplier = linerenderer.widthMultiplier;
-        
     }
-    void Update()
-    {
-   
 
-        if(_target != null)
+    public virtual void FireLaser(Vector3 startPos, Vector3 endPos, float damagePerSec)
+    {
+        // Perform the raycast
+        RaycastHit hit;
+        Vector3 direction = (endPos - startPos).normalized;
+        float distance = Vector3.Distance(startPos, endPos);
+
+        // Raycast in the direction from startPos to endPos
+        if (Physics.Raycast(startPos, direction, out hit, 2*distance, enemyLayer))
         {
-            FireLaser();
+            // Set the laser positions to the hit point
+            linerenderer.SetPosition(0, startPos);
+            linerenderer.SetPosition(1, hit.point);
+
+            // Apply damage to the hit object
+            Health health = hit.collider.GetComponent<Health>();
+            if (health != null)
+            {
+                health.TakeDamage(damagePerSec * Time.deltaTime);
+            }
         }
         else
         {
-           DisableLaser();
+            // If no hit, draw the laser to the endPos
+            linerenderer.SetPosition(0, startPos);
+            linerenderer.SetPosition(1, endPos);
         }
-    }
 
-    public void Initialize(Transform target,float damagePersecond,Transform FirePoint)
-    {
-        _target = target;
-        _FirePoint = FirePoint;
-        _damagePerSecond = damagePersecond;
-    }
-    public void FireLaser()
-    {
+        // Adjust laser width multiplier
         linerenderer.widthMultiplier = orglinemultiplier * GameSettings.GetScaleMultiplier();
-        linerenderer.SetPosition(0, _FirePoint.position);
-        linerenderer.SetPosition(1, _target.position);
-         
-
-        _target.GetComponent<Health>().TakeDamage(_damagePerSecond*Time.deltaTime);
-
-        
-
     }
 
     public void DisableLaser()
     {
         Destroy(this.gameObject);
     }
-
-
-
 }
