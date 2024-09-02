@@ -53,7 +53,11 @@ public class LaserTowerStateManager : DOTTowerStateManager
     public void UpgradeLaser(Laser _laser)
     {
         this.laser = _laser;
-        currlaseer.DisableLaser();
-        currlaseer = null;
+        if(currlaseer != null)
+        {
+            currlaseer.DisableLaser();
+            currlaseer = null;
+        }
+
     }
 }
